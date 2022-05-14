@@ -1,0 +1,112 @@
+{% extends "user_public.html" %}
+
+{% block page_title %}
+Pay
+{% endblock %}
+
+
+{% block main %}
+<script>
+    function pay() {
+        order_id = $("#orderId").html();
+        $.ajax({
+        type: "post",
+        url: "/pay",
+        data: {
+            order_id: order_id
+        },
+        statusCode: {
+            200: function () {
+                alert("Payment Successful");
+                window.location.href = "/pay_success?order_id=" + order_id
+            },
+            500: function () {
+                alert("Payment failed, try again.");
+            }
+        }
+    });
+    }
+</script>
+
+<div class="card-body px-3 pb-1" id="main">
+    {% csrf_token %}
+
+    <div style="text-align:center; margin: 50px auto">
+        <h4>Order ID: <span id='orderId'>{{ order_id }}</span> </h4>
+    </div>
+
+    <div id='bikeId' style="text-align:center; margin: 50px auto">
+        <h4>Bike ID: {{ bike_id }}</h4>
+    </div>
+
+    <div id='duration' style="text-align:center; margin: 50px auto">
+        <h4>Duration: {{ duration }} minutes</h4>
+    </div>
+
+    <div id='amout' style="text-align:center; margin: 50px auto">
+        <h2>￡ {{amount}}</h2>
+    </div>
+
+    <button class="btn btn-blue py-2 text-600 letter-spacing-1 btn-block" onclick='pay()'>
+        Pay
+    </button>
+
+
+    <!-- <form class="mt-lg-3" autocomplete="off" >
+        {% csrf_token %}
+        <div class="card-body">
+            <div class="form-group row">
+                <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                    <label for="bike_id" class="mb-0">
+                        Bike ID:
+                    </label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control col-sm-8 col-md-6" id="bike_id"
+                        name="bike_id">
+                </div>
+            </div>
+            <div style="margin-bottom: 16px;">
+                <label for="defective_parts">
+                    Defective Parts:
+                </label>
+
+                <select class="form-control" id="defective_parts" name="defective_parts">
+                    <option value="brake">Brake</option>
+                    <option value="tyre">Tyre</option>
+                    <option value="roller_chain">Roller Chain</option>
+                    <option value="seat">Seat</option>
+                </select>
+            </div>
+
+
+            <label for="description">
+                Description:
+            </label>
+            <div>
+                <textarea class="form-control" id="description" maxlength="50"
+                    placeholder="50 character limit" name="description"></textarea>
+            </div>
+
+        </div>
+
+
+        <div class="mt-5 border-t-1 bgc-secondary-l4 brc-secondary-l2 py-35 mx-n25">
+            <div class="offset-md-3 col-md-9 text-nowrap" style="width: 320px; margin: 0 auto">
+                <button class="btn btn-outline-lightgrey btn-bgc-white btn-bold ml-2 px-4" type="button"
+                    onclick="window.history.go(-1)">
+                    <i class="fa fa-angle-left mr-1"></i>
+                    Return
+                </button>
+
+                <button class="btn btn-info btn-bold px-4" type="button" id="submit" onclick="submit_report()">
+                    <i class="fa fa-check mr-1"></i>
+                    Submit
+                </button>
+            </div>
+        </div>
+    </form> -->
+
+</div>
+
+{% endblock %}

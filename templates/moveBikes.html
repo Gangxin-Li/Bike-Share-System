@@ -1,0 +1,130 @@
+<html>
+  <head>
+    <div class="topnav">
+     <a class = "menu active"  href="http://127.0.0.1:8000/viewReports/1/">History</a>
+      <a  class = "menu" href="http://127.0.0.1:8000/trackBikeshtml/">List of bikes</a>
+      <a  class = "menu" href="http://127.0.0.1:8000/viewDefbikes/">Repair bikes</a>
+      <a class = "menu" href="http://127.0.0.1:8000/moveBikes/">Move bikes</a>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+    $(document).ready(function(){
+  $('a').click(function(){
+    $('a').removeClass("active");
+    $(this).addClass("active");
+});
+});
+</script>
+<style>
+
+    /* Add a black background color to the top navigation */
+.topnav {
+background-color: #333;
+overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav  a {
+float: left;
+color: #f2f2f2;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+background-color: #ddd;
+color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+background-color: #0a72e9;
+color: white;
+}
+</style>
+    <title>Move a Bike</title>
+    <h1>Move a Bike</h1>
+    <label id="lbltipAddedComment" text = "jdggfyhfhfg"></label>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
+  </head>
+  <body>
+      <label>Bike id: </label>
+      <input type="text"  id="Bike_id" >
+
+      <select  id="locality-dropdown" name="locality"></select>
+      <br>
+      <br>
+      <button onclick="functionOne()" id = "button1" type="submit" formmethod="post">Get Current Station</button>
+      <button onclick="sendData()" id = "button2" type="submit" formmethod="post">Update Station</button>
+    
+    
+    <script type="text/javascript">
+      let dropdown = document.getElementById('locality-dropdown');
+      dropdown.length = 0;
+      
+      let defaultOption = document.createElement('option');
+      defaultOption.text = 'Choose a station';
+      
+      dropdown.add(defaultOption);
+      dropdown.selectedIndex = 0;
+      
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open( "GET", 'http://127.0.0.1:8000/getStations/', false );
+      xmlHttp.send( null );
+      var obj = JSON.parse(xmlHttp.responseText);
+      let option;
+      for (let i in obj ) {
+        option = document.createElement('option');
+        option.text = String(obj[i]["station_name"]);
+        option.value = obj[i]["id"];
+        dropdown.add(option);
+      }  
+
+      let btn1 = document.querySelector('button1');
+      let btn2 = document.querySelector('button2');
+      
+
+
+    function sendData( data ) {
+        if(document.getElementById("Bike_id").value == ""){
+          alert("Please enter a bike id!")
+          return 0;
+        } else if(document.getElementById('locality-dropdown').selectedIndex == 0){
+          alert("Please choose a station!")
+          return 0;
+        }
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function() {
+    if (xmlHttp.readyState == XMLHttpRequest.DONE) {
+        alert(xmlHttp.responseText);
+    }
+}
+      FD  = new FormData();
+      var data = {}
+      data['bike_id'] = document.getElementById("Bike_id").value;
+      data['station_id'] = document.getElementById('locality-dropdown').selectedIndex;
+      FD.append('bike_id',data['bike_id'])
+      FD.append('station_id',data['station_id'])
+
+  xmlHttp.open( 'POST', 'http://127.0.0.1:8000/movebikes/' );
+  xmlHttp.send( FD );
+}
+
+function functionOne(){
+  let bike_id = document.getElementById("Bike_id").value;
+  //document.write(bike_id);
+  //{ sendData( {test:'ok'} );
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open( "GET", 'http://127.0.0.1:8000/getCurrentStation/'+bike_id, false );
+      xmlHttp.send( null );
+      var obj = JSON.parse(xmlHttp.responseText);
+      document.getElementById('locality-dropdown').selectedIndex = obj["station_id"];
+      //document.write(String(obj["station_id"]));
+} 
+      
+       </script>
+  </body>
+</html>

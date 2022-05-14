@@ -1,0 +1,80 @@
+/* Tianyi LI*/
+body{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family:"Ubuntu",sans-serif;
+    justify-content: center;
+    /*background: url(../images/urechargebg.jpg) no-repeat;*/
+    text-align: center;
+    /*background-color: rgb(181, 225, 236);*/
+}
+#map {
+    position: absolute;
+    overflow:hidden;
+    height:90%;
+    width: 90%;
+    top:50%;
+    left:50%;
+    overflow-y: scroll;
+    transform:translate(-50%,-50%);
+    border-radius: 8px;
+  }
+
+.back img{
+    position: absolute;
+    left:5%;
+    top:5%;
+    width: 30px;
+}  
+/*.frong{
+    position:absolute;
+    background:aliceblue;
+    bottom: 10%;
+    margin: auto;
+
+}*/
+.frong input[type ="text"]{
+    position:absolute;
+    top:65%;    
+    left:30%;  
+    width:40%;
+    background: none;
+    display: block;
+    margin: 50px auto;
+    text-align: center;
+    border: 2px solid  rgba(79, 80, 80, 0.911);
+    background:rgba(252, 252, 252, 0.819);
+    padding:14px 10px;
+    outline:none;
+    font-weight: 400;
+    font-size: 15px; 
+    border-radius: 8px;
+    transition:0.25s;
+}
+
+.frong input[type="text"]:hover{
+    background:whitesmoke;
+}
+
+.frong input[type="submit"]{
+    position:absolute;
+    top:75%;   
+    width:40%;
+    left:32%;
+    display: block;
+    border: 0;
+    margin: 50px auto;
+    text-align: center;
+    padding:15px 20px;
+    background:rgba(79, 80, 80, 0.819);
+    color:whitesmoke;
+    outline:none;
+    border-radius: 8px;
+    transition:0.25s;
+    font-size: 15px;
+}
+
+.frong input[type="submit"]:hover{
+    background:rgba(79, 80, 80);
+}

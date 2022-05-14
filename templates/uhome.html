@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="../static/css/uhome.css">
+     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script>
+      function iMap() {
+        // The location of Uluru
+        const uluru = { lat: 55.87309147621015, lng: -4.284283367427977 };
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 13,
+          center: uluru,
+        });
+
+
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", 'http://127.0.0.1:8000/getStations/', false );
+        xmlHttp.send( null );
+        var obj = JSON.parse(xmlHttp.responseText);
+
+        for (let i in obj ) {
+                lati = obj[i]["latitude"]
+                long = obj[i]["longitude"]
+                station_id = obj[i]["id"]
+
+                const marker = new google.maps.Marker({
+                    position: { lat: lati, lng: long },
+                    map: map,
+                    label: { text: obj[i]["station_name"] },
+                    title: String(obj[i]["id"])
+                });
+
+                marker.addListener("click", () => {
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.open( "GET", 'http://127.0.0.1:8000/trackbikes/'+ marker.getTitle()+ '/', false );
+                    xmlHttp.send( null );
+                    var obj2 = JSON.parse(xmlHttp.responseText);
+                    var x = ''
+                    for (let k in obj2 ) {
+                        if(obj2[k]["is_faulty"] == true){
+                            x= x + String("bike "+obj2[k]["bike_id"]) + ": faulty \n"
+                        }
+                        else{
+                            x= x + String("bike "+obj2[k]["bike_id"]) + ": not faulty \n"
+                        }                       
+                    }
+                    alert(x);
+                });
+            }           
+        const mapLabel = new google.maps.MapLabel({
+        text: 'University of Glasgow',
+        position: uluru,
+        map: map,
+        fontSize: 40,
+        align: 'center'
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="map">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGnkHMUE3gjDToQvGG6UyyptapB7yD04k&callback=iMap&libraries=&v=weekly" async></script>       
+    </div>
+        <form action="#" class="box" method ="post">
+        {% csrf_token %}
+         <div class="back">
+            <a href="/ume/">
+             <img src="../static/images/left.png" alt="">
+            </a>
+         </div>
+         <div class="frong">
+             <input type="text" name="" placeholder="input bike id to unlock">
+             <input type="submit" name="" value="Rent">
+         </div>
+        </form>
+  </body>
+</html>

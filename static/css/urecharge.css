@@ -1,0 +1,69 @@
+/*author Tianyi LI*/
+body{
+    margin:0;
+    padding:0;
+    font-family:"Ubuntu",sans-serif;
+    /*background-color: rgb(181, 225, 236);*/
+    background: url(../images/urechargebg.jpg) no-repeat;
+}
+.box h1{
+    position: relative;
+    color:cadetblue;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin:15%;
+}
+.box{
+    width:70%;
+    height: 80%;
+    padding:40px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background-color: rgba(255, 255, 255, 0.877);
+    text-align: center;
+    border-radius: 24px;
+}
+.box .wrapper img{
+    position: absolute;
+    left:5%;
+    top:5%;
+    width: 30px;
+}
+.box input[type ="text"]{
+  
+    border:0;
+    width:40%;
+    background: none;
+    display: block;
+    margin: 50px auto;
+    text-align: center;
+    border: 2px solid  cadetblue;
+    padding:14px 10px;
+    outline:none;
+    color: rgba(10, 10, 10, 0.664);
+    border-radius: 24px;
+    transition:0.25s;
+}
+.box input[type="text"]:hover{
+    border-color: rgb(231, 207, 176);
+    width: 50%;
+}
+.box input[type="submit"]{
+    border:0;
+    background: rgb(231, 207, 176);
+    display: block;
+    width:45%;
+    margin: 40px auto;
+    text-align: center;
+    padding:14px 10px;
+    outline:none;
+    color: rgba(10, 10, 10, 0.664);
+    border-radius: 24px;
+    transition:0.25s;
+    font-weight: 400;
+}
+.box input[type="submit"]:hover{
+    background: rgba(248, 231, 209, 0.904);
+}

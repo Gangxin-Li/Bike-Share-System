@@ -1,0 +1,28 @@
+<!doctype html>
+<!--@author Tianyi LI-->
+<html lang="en">
+    <head>
+       <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="stylesheet" href="../static/css/urecharge.css">
+       <title></title>
+    </head>
+    <body>
+        <form action="#" class="box" method ="post">
+        {% csrf_token %}
+         <div class="wrapper">
+            <a href="/ume/">
+             <img src="../static/images/left.png" alt="">
+            </a>
+         </div>
+         <div class="rechag">
+            <h1> Recharge</h1>
+         </div>
+        
+         <input type="text" name="" placeholder="$1-100">
+         <input type="submit" name="" value="Recharge">
+        </form>
+
+    </body>
+
+</html> 

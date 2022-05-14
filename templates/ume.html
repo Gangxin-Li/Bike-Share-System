@@ -1,0 +1,78 @@
+<!doctype html>
+<!--@author Tianyi LI-->
+<html lang="en">
+    <head>
+       <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title></title>
+       <link rel="stylesheet" href="../static/css/ume.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="hed">
+                <a href="/urecharge/">
+                  <img src="../static/images/left.png" alt="">
+                </a>
+                <h1>Me</h1>
+            </div>
+            <div class="wrapper">
+                 <a href="#">
+                  <img src="../static/images/user1.png" alt="">
+                 </a>
+            </div>  
+
+            <div class="uname">
+                <div >tianyi@163.com</div>        
+            </div>
+
+            <div class="rechar">
+                 <div class="text">Balance:$5.2</div>
+                 <form action="/urecharge/" method ="post">
+                 {% csrf_token %}
+                 <div class="btn">
+                    <input type="submit" name="" value="Recharge">
+                 </div>
+                 </form>
+            </div>
+            <div class="orders">
+                 <div class="myorder">
+                    <h3>riding</h3>
+                    <div class="order">
+                        <div class="otxt">order</div>
+                        <i class="riding"></i>
+                    </div>
+
+
+                    <h3>unpayed</h3>
+                    <div class="order">
+                        <div class="otxt">order</div>
+                        <i class="riding"></i>
+                    </div>
+
+
+
+                    <h3>payed</h3>
+                    <div class="order">
+                        <div class="otxt">order</div>
+                        <i class="riding"></i>
+                    </div>
+                     <div class="order">
+                        <div class="otxt">order</div>
+                        <i class="riding"></i>
+                    </div>
+                    <div class="order">
+                        <div class="otxt">order</div>
+                        <i class="riding"></i>
+                    </div>
+                     <div class="order">
+                        <div class="otxt">order</div>
+                        <i class="riding"></i>
+                    </div>
+
+                 </div>
+        </div>
+
+
+    </body>
+
+</html> 

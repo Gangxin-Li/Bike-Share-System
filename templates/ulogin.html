@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+<meta charset="utf-8">
+<title>User login and sign up</title>
+<link rel="stylesheet" type="text/css"href="../static/css/style.css">
+</head>
+<body>
+
+    <div class="content">
+        <div class="form sign-in">
+            <h2>Welcome</h2>
+        <form id="form1" action="/ulogin_post/" method="post">
+            {% csrf_token %}
+            <label>
+                <span>Email</span>
+                <input type="email" name ="email" />
+            </label>
+            <label>
+                <span>Password</span>
+                <input type="password" name = "password"  />
+            </label>
+            <p class="forgot-pass"><a href="javascript:">Forget your password?</a></p>
+            <button type="submit" name="Login_button" class="submit">Login</button>
+            <button type="submit" class="fb-btn">Use <span>facebook</span> account</button>
+        </div>
+    </form>
+        <div class="sub-cont">
+            <div class="img">
+                <div class="img__text m--up">
+                    <h2>Havn't sign up?</h2>
+                    <p>Sign up now！</p>
+                </div>
+                <div class="img__text m--in">
+                    <h2>Had an account?</h2>
+                    <p>Just login in！</p>
+                </div>
+                <div class="img__btn">
+                    <span class="m--up">Sign up</span>
+                    <span class="m--in">Login</span>
+                </div>
+            </div>
+        <form id = "form2" action = "/uregist_post/" method = "post">
+        {% csrf_token %}
+            <div class="form sign-up">
+                <h2>Sign up now</h2>
+                <label>
+                    <span>Username</span>
+                    <input type="text" name = "text" />
+                </label>
+                <label>
+                    <span>Email</span>
+                    <input type="email" name = "email" />
+                </label>
+                <label>
+                    <span>Password</span>
+                    <input type="password" name = "password" />
+                </label>
+                <button type="submit"  class="submit">Sign up</button>
+                <button type="submit" class="fb-btn">Use <span>facebook</span> account</button>
+            </div>
+       </form>
+        </div>
+    </div>
+    <script src="../static/js/script.js"></script>
+	<div style="text-align:center;">
+</div>
+</body>
+</html>
+
+
